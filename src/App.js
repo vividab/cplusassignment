@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import ImageList from "./components/ImageList.js";
+import Photogrid from "./components/photogrid.js";
 import ImagePopUp from "./components/ImagePopUp.js";
 import constants from "./constants.js";
 import { scrollAreaAvailable, debounce, throttle, checkHttpStatus, parseJSON } from "./utils.js";
@@ -90,20 +90,22 @@ export default class App extends React.Component {
 
 	render() {
 		return (
-			<div className="app">
-				<div className="app-header">
-					<h2 style={{ margin: "1rem 0" }}>Flickr Search</h2>
+			<div className="app-header">
+				<div style={{backgroundColor: "#ffffff", color: "black", fontWeight: "bold", fontSize: "25px", }}><h1>ReactJS Assignment</h1></div><br/>
+				<div style={{backgroundColor: "black", marginBottom: "2px", height: "140px"}}>
+					<h3 style={{ margin: "5px", color: "#ffffff", marginTop: "20px",}}>Search Photos</h3>
 					<div className="h-flex jc ac search-bar">
 						<input
 							type="text"
 							className="search-input"
 							value={this.state.searchText}
 							onChange={this.onSearchInputChange}
+							placeholder= "Search Image..."
 						/>
 					</div>
 					{this.state.queries.length > 0 &&
 						<div style={{ marginTop: "16px" }}>
-							<h5 style={{ marginBottom: "5px" }}>Recent Searches</h5>
+							<h5 style={{ marginBottom: "5px" }}>Recents..</h5>
 							<ul className="h-flex jc">
 								{this.state.queries.map((query, idx) =>
 									<li key={idx} className="query">
@@ -115,8 +117,8 @@ export default class App extends React.Component {
 				</div>
 				<div className="app-content" ref="appContent">
 					{this.state.imageList.length
-						? <ImageList images={this.state.imageList} onImageClick={this.handleImageClick} />
-						: <p style={{ margin: "1rem 0" }}>Try searching for some image in the search bar</p>}
+						? <Photogrid images={this.state.imageList} onImageClick={this.handleImageClick} />
+						: <p style={{ margin: "1rem 0" }}></p>}
 					<ReactCSSTransitionGroup
 						transitionName="popup-container"
 						transitionEnterTimeout={400}

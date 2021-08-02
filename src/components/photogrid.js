@@ -1,7 +1,7 @@
 import React from "react";
 import { getImageUrl } from "../utils.js";
 
-export default class ImageList extends React.Component {
+export default class photogrid extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onImageClick = this.onImageClick.bind(this);
